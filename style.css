@@ -9,7 +9,6 @@ body {
   font-family: "Roboto", sans-serif;
   scroll-behavior: smooth;
   background: linear-gradient(135deg, #1a1a1a 0%, #2a1e36 30%, #582688 75%, #1b1b1b 100%);
-  background-image: url('img/b2fb21f206c56acc2007ed7');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -215,4 +214,5 @@ footer {
   margin-top: 50px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 
