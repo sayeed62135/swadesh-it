@@ -22,7 +22,7 @@ h1, h2, h3 {
 
 section {
   padding: 5% 10%;
-  background: rgba(0, 0, 0, 0.527);
+  background: rgba(0, 0, 0, 0.28);
   font-family: "Quicksand", sans-serif;
 }
 
@@ -214,6 +214,7 @@ footer {
   margin-top: 50px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 
 
 
