@@ -797,7 +797,7 @@ section,
 # Hero Section
 --------------------------------------------------------------*/
 .hero-body {
-  background: url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+  background: url('../img/hero.jpg') no-repeat center center/cover;
   color: #fff;
   height: 100vh; /* Keep this if you want full viewport height, or use auto with min-height */
   display: flex;
