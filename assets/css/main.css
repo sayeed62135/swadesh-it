@@ -138,17 +138,16 @@ p {
 # Global Header
 --------------------------------------------------------------*/
 .header {
-  --background-color: rgba(255, 255, 255, 0);
-  --surface-color: #1b1933;
   color: var(--default-color);
-  background-color: var(--background-color);
-  padding: 20px 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 10px 0;
   transition: all 0.5s;
-  z-index: 997;
+  z-index: 10000 !important;
 }
 
 .header .header-container {
-  background: var(--surface-color);
+  background: rgba(11, 11, 11, 0.8) !important;
   border-radius: 50px;
   padding: 5px 25px;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
@@ -794,30 +793,39 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Hero Section
+# Hero Section      
 --------------------------------------------------------------*/
-.hero-body {
+.hero-section {
   background: url('../img/hero.jpg') no-repeat center center/cover;
+  position: relative; /* Ensure the parent has positioning for the pseudo-element */
+}
+
+.hero-section::before {
+  content: "";
+  background: rgba(0, 0, 0, 0.75);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; /* This ensures it stretches to the bottom */
+  z-index: 0;
+}
+
+.hero-body {
   color: #fff;
-  height: 100vh; /* Keep this if you want full viewport height, or use auto with min-height */
+  min-height: 100vh;   /* viewport-এর সমান হবে, কিন্তু কনটেন্ট বড় হলে বাড়বে */
+  height: auto;        /* auto রাখলে মোবাইলে কাটা যাবে না */
+  padding: 100px 20px; /* উপরে/নিচে কিছু padding দিন */
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "Poppins", sans-serif;
-  position: relative; /* Added to contain the overlay */
+  position: relative;
+  z-index: 2; /* Ensure content is above the overlay */
 }
 
-.hero-body::before {
-  content: "";
-  background: rgba(0, 0, 0, 0.75);
-  position: absolute;
-  top: 0; /* Adjust based on navbar height */
-  left: 0;
-  width: 100%;
-  height: 100%; /* Subtract navbar height to avoid overlap */
-  z-index: 1;
-}
- .hero-container {
+.hero-container {
   position: relative;
   max-width: 1200px;
   width: 90%;
@@ -945,6 +953,25 @@ section,
         margin-top: 40px;
       }
     }
+@media (max-width: 768px) {
+  .hero-body {
+    min-height: auto;
+    height: auto;
+    padding: 80px 20px 60px;
+    flex-direction: column; /* উপরে-নিচে সাজাবে */
+    text-align: center;
+  }
+
+  .hero-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .hero-body .left, 
+  .hero-body .right {
+    max-width: 100%;
+  }
+}
 
 @media (max-width: 768px) {
   .hero .hero-content h1 {
@@ -975,41 +1002,41 @@ section,
   font-size: 1rem;
 }
 
-.hero .hero-buttons .btn.btn-primary {
+.hero-body .hero-buttons .btn.btn-primary {
   background: var(--accent-color);
   color: var(--contrast-color);
   border: 2px solid var(--accent-color);
 }
 
-.hero .hero-buttons .btn.btn-primary:hover {
+.hero-body .hero-buttons .btn.btn-primary:hover {
   background: color-mix(in srgb, var(--accent-color), black 10%);
   border-color: color-mix(in srgb, var(--accent-color), black 10%);
   transform: translateY(-2px);
 }
 
-.hero .hero-buttons .btn.btn-outline {
+.hero-body .hero-buttons .btn.btn-outline {
   background: transparent;
   color: var(--accent-color);
   border: 2px solid var(--accent-color);
 }
 
-.hero .hero-buttons .btn.btn-outline:hover {
+.hero-body .hero-buttons .btn.btn-outline:hover {
   background: var(--accent-color);
   color: var(--contrast-color);
   transform: translateY(-2px);
 }
 
-.hero .hero-stats {
+.hero-body .hero-stats {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
 }
 
-.hero .hero-stats .stat-item {
+.hero-body .hero-stats .stat-item {
   text-align: center;
 }
 
-.hero .hero-stats .stat-item .stat-number {
+.hero-body .hero-stats .stat-item .stat-number {
   display: block;
   font-size: 2rem;
   font-weight: 700;
@@ -1017,7 +1044,7 @@ section,
   line-height: 1;
 }
 
-.hero .hero-stats .stat-item .stat-label {
+.hero-body .hero-stats .stat-item .stat-label {
   display: block;
   font-size: 0.9rem;
   color: color-mix(in srgb, var(--default-color), transparent 30%);
@@ -1025,7 +1052,7 @@ section,
 }
 
 @media (max-width: 768px) {
-  .hero .hero-stats {
+  .hero-body .hero-stats {
     justify-content: center;
     gap: 1.5rem;
   }
@@ -1033,7 +1060,7 @@ section,
 
 
 
-.hero .hero-bg-elements {
+.hero-body .hero-bg-elements {
   position: absolute;
   top: 0;
   left: 0;
@@ -1142,10 +1169,22 @@ section,
   font-weight: 700;
   margin-bottom: 1rem;
 }
+.about .content h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
 
+.about .content h5 {
+  font-size: 15px;
+  color: color-mix(in srgb, var(--default-color), transparent 10%);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  font-family: "Poppins", sans-serif;
+}
 .about .content p {
   color: color-mix(in srgb, var(--default-color), transparent 30%);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   font-family: "Poppins", sans-serif;
 }
 
@@ -1155,11 +1194,13 @@ section,
   margin-bottom: 2.5rem;
 }
 
-.about .content .features-list li {
+
+.about .content .features-list li p {
   display: flex;
   align-items: center;
-  padding-bottom: 1rem;
+  
   font-weight: 500;
+  font-family: "Poppins", sans-serif;
 }
 
 .about .content .features-list li i {
