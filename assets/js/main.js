@@ -186,6 +186,37 @@
     }
   });
 
+
+
+  // Theme Toggle Functionality
+document.addEventListener('DOMContentLoaded', () => {
+  const themeSwitch = document.getElementById('theme-switch');
+  const body = document.body;
+
+  // Load saved theme
+  if (localStorage.getItem('theme') === 'light') {
+    body.classList.add('light-mode');
+    themeSwitch.checked = true;
+  }
+
+  // Toggle theme with animation delay
+  themeSwitch.addEventListener('change', () => {
+    if (themeSwitch.checked) {
+      body.classList.add('light-mode');
+      localStorage.setItem('theme', 'light');
+    } else {
+      body.classList.remove('light-mode');
+      localStorage.setItem('theme', 'dark');
+    }
+    // Optional: Add a small delay to sync with animation
+    setTimeout(() => {
+      console.log('Theme changed to:', body.classList.contains('light-mode') ? 'light' : 'dark');
+    }, 500);
+  });
+});
+
+
+
   /**
    * Navmenu Scrollspy
    */
