@@ -166,7 +166,7 @@ p {
   font-size: 24px;
   margin: 0;
   font-weight: 500;
-  color: var(--heading-color);
+  color: var(--heading-color) !important;
 }
 
 .header .btn-getstarted,
@@ -212,6 +212,141 @@ p {
   }
 }
 
+/* Creative Theme Toggle Switch Styles */
+.theme-toggle {
+  position: relative;
+}
+@media (max-width: 1199px) {
+  .theme-toggle {
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+.theme-switch-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 30px;
+  background: linear-gradient(45deg, #0dbf66, #524dd3);
+  border-radius: 50px;
+  position: relative;
+  cursor: pointer;
+  padding: 4px;
+  transition: background 0.5s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.theme-switch-label:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.icon-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+  z-index: 3;
+}
+
+.light-icon,
+.dark-icon {
+  font-size: 16px;
+  color: var(--default-color);
+  transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+.light-icon {
+  opacity: 1;
+  
+}
+
+.dark-icon {
+  opacity: 1;
+}
+
+.switch-ball {
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  width: 25px;
+  height: 25px;
+  background: linear-gradient(135deg, #1f2240 0%, #131428 100%);
+  border-radius: 50%;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+/* Animation for Icons on Toggle */
+#theme-switch:checked + .theme-switch-label .light-icon {
+  transform: rotate(360deg);
+  
+}
+
+#theme-switch:checked + .theme-switch-label .dark-icon {
+  transform: rotate(-360deg);
+  opacity: 1;
+}
+
+#theme-switch:checked + .theme-switch-label .switch-ball {
+  transform: translateX(30px);
+  background: linear-gradient(45deg, #ffffff, #e8e7f7);
+}
+
+#theme-switch:checked + .theme-switch-label {
+  background: linear-gradient(135deg, #f8eb2f, #ff7e14);
+}
+
+/* Light Mode Overrides */
+body.light-mode {
+  --background-color: #ffffff; /* Light background */
+  --default-color: #212529; /* Dark text */
+  --heading-color: #000000; /* Dark headings */
+  --surface-color: #f8f9fa; /* Light surface for cards/boxes */
+  --contrast-color: #000000; /* Dark contrast */
+  --nav-color: #343a40; /* Dark nav links */
+  --nav-hover-color: #000000; /* Dark nav hover */
+  --nav-mobile-background-color: #ffffff; /* Light mobile nav bg */
+  --nav-dropdown-background-color: #f8f9fa; /* Light dropdown bg */
+  --nav-dropdown-color: #343a40; /* Dark dropdown text */
+  --nav-dropdown-hover-color: #000000; /* Dark dropdown hover */
+
+  /* Additional adjustments for buttons, accents, etc. */
+  --accent-color: #0dbf66; /* Keep accent, but you can change if needed */
+}
+
+body.light-mode .header-container {
+  background: rgba(255, 255, 255, 0.8) !important; /* Light header bg */
+}
+
+body.light-mode .btn-getstarted {
+  color: #ffffff; /* White text on accent bg */
+  background: var(--accent-color);
+}
+
+body.light-mode .btn-getstarted:hover {
+  color: #ffffff;
+  background: color-mix(in srgb, var(--accent-color), transparent 15%);
+}
+
+/* Invert colors for other sections if needed (e.g., cards, testimonials) */
+body.light-mode .card, 
+body.light-mode .testimonial-item {
+  background: var(--surface-color);
+  color: var(--default-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+/* Ensure images/icons adjust if they have color filters */
+body.light-mode i, body.light-mode .bi {
+  color: var(--default-color); /* Dark icons in light mode */
+}
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
@@ -235,7 +370,7 @@ p {
 
   .navmenu>ul>li {
     white-space: nowrap;
-    padding: 15px 14px;
+    padding: 5px 14px;
   }
 
   .navmenu>ul>li:last-child {
@@ -850,6 +985,7 @@ section,
     }
 
     h1 {
+      color: #ffffff !important;
       font-size: 42px;
       font-weight: 800;
       line-height: 1.2;
@@ -889,8 +1025,11 @@ section,
       align-items: center;
       gap: 8px;
       cursor: pointer;
-      color: #0dbf66;
+      color: #0dbf66 !important;
       font-weight: bold;
+    }
+    .watch i {
+      color: #0dbf66 !important;
     }
 
     .stats {
@@ -934,7 +1073,7 @@ section,
 
     .hero-card i {
       font-size: 28px;
-      color: #0dbf66;
+      color: #0dbf66 !important;
       margin-bottom: 10px;
     }
 
